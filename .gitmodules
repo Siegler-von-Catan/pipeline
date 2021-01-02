@@ -1,0 +1,6 @@
+[submodule "sealExtraction"]
+	path = sealExtraction
+	url = https://github.com/Siegler-von-Catan/sealExtraction.git
+[submodule "ShapeFromShading"]
+	path = ShapeFromShading
+	url = https://github.com/Siegler-von-Catan/ShapeFromShading.git
