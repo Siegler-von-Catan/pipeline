@@ -43,6 +43,14 @@ if [ ! -d "$SFS_DIR" ]; then
     exit 1
 fi
 
+if [ ! -d "$VENV_DIR" ]; then
+    printf "Virtual environment missing in \"%s\". Setting it up now\n" "$VENV_DIR"
+    setup
+else
+    printf "Using virtual environment in \"%s\"\n" "$VENV_DIR"
+    source "${VENV_DIR}/bin/activate"
+fi
+
 if [ ! -d "$DATA_DIR" ]; then
     printf "\"%s\" does not exist!\n" "$DATA_DIR"
     exit 1
@@ -53,14 +61,6 @@ if [ -d "$OUT_DIR" ]; then
     exit 1
 else
     mkdir -p "$OUT_DIR"
-fi
-
-if [ ! -d "$VENV_DIR" ]; then
-    printf "Virtual environment missing in \"%s\". Setting it up now\n" "$VENV_DIR"
-    setup
-else
-    printf "Using virtual environment in \"%s\"\n" "$VENV_DIR"
-    source "${VENV_DIR}/bin/activate"
 fi
 
 
