@@ -12,6 +12,7 @@ SFS_DIR="ShapeFromShading"
 setup() {
     python3 -m venv "$VENV_DIR"
     source "${VENV_DIR}/bin/activate"
+    pip install wheel
     pip install -r "$EXTRACTION_DIR/requirements.txt"
     pip install -r "$SFS_DIR/requirements.txt"
 }
