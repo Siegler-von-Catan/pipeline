@@ -8,6 +8,7 @@ OUT_DIR="data/out"
 
 EXTRACTION_DIR="sealExtraction"
 SFS_DIR="ShapeFromShading"
+DMSTL_DIR="displacementMapToStl"
 
 setup() {
     python3 -m venv "$VENV_DIR"
@@ -24,6 +25,7 @@ process_single() {
     local extracted_file="$OUT_DIR/seal-$base_file.png"
     local output_file="$OUT_DIR/shape-$base_file.png"
     local pp_output_file="$OUT_DIR/processed-shape-$base_file.png"
+    local shape_file="$OUT_DIR/map-$base_file.stl"
     python3 "$EXTRACTION_DIR/sealExtraction/main.py" \
         -o "$extracted_file" \
         "$1"
@@ -36,17 +38,29 @@ process_single() {
         -noise 15 \
         -blur 8 \
         "$pp_output_file"
+    blender \
+        --background \
+        "$(pwd)/$DMSTL_DIR/src/empty.blend" \
+        --python "$(pwd)/$DMSTL_DIR/src/displacementMapToStl.py" \
+        -- \
+        "$(pwd)/$pp_output_file" \
+        "$(pwd)/$shape_file"
 }
 
 # Prerequisites
 
 if [ ! -d "$EXTRACTION_DIR" ]; then
-    printf "Did not find specified sealExtraction location \"%s\".\nHave you initialized the git submodules?\n" "$EXTRACTION_DIR"
+    printf "Did not find specified sealExtraction location \"%s\".\nDid you initialize the git submodules?\n" "$EXTRACTION_DIR"
     exit 1
 fi
 
 if [ ! -d "$SFS_DIR" ]; then
-    printf "Did not find specified ShapeFromShading location \"%s\".\nHave you initialized the git submodules?\n" "$SFS_DIR"
+    printf "Did not find specified ShapeFromShading location \"%s\".\nDid you initialize the git submodules?\n" "$SFS_DIR"
+    exit 1
+fi
+
+if [ ! -d "$DMSTL_DIR" ]; then
+    printf "Did not find specified displacmentMapToStl location \"%s\".\nDid you initialize the git submodules?\n" "$SFS_DIR"
     exit 1
 fi
 
