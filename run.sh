@@ -35,7 +35,7 @@ process_single() {
     magick \
         "$output_file" \
         -equalize \
-        -noise 15 \
+        -statistic NonPeak 10 \
         -blur 8 \
         "$pp_output_file"
     blender \
