@@ -23,12 +23,19 @@ process_single() {
     base_file="$(basename --suffix=.jpg "$1")"
     local extracted_file="$OUT_DIR/seal-$base_file.png"
     local output_file="$OUT_DIR/shape-$base_file.png"
+    local pp_output_file="$OUT_DIR/processed-shape-$base_file.png"
     python3 "$EXTRACTION_DIR/sealExtraction/main.py" \
         -o "$extracted_file" \
         "$1"
     python3 "$SFS_DIR/shapefromshading/main.py" \
         -o "$output_file" \
         "$extracted_file"
+    magick \
+        "$output_file"
+        -equalize \
+        -noise 15 \
+        -blur 8 \
+        "$pp_output_file"
 }
 
 # Prerequisites
