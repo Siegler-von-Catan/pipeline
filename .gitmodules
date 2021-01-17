@@ -4,3 +4,6 @@
 [submodule "ShapeFromShading"]
 	path = ShapeFromShading
 	url = https://github.com/Siegler-von-Catan/ShapeFromShading.git
+[submodule "displacementMapToStl"]
+	path = displacementMapToStl
+	url = https://github.com/Siegler-von-Catan/displacementMapToStl.git

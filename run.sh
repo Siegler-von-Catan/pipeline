@@ -31,7 +31,7 @@ process_single() {
         -o "$output_file" \
         "$extracted_file"
     magick \
-        "$output_file"
+        "$output_file" \
         -equalize \
         -noise 15 \
         -blur 8 \
