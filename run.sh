@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
+set -x
 
 VENV_DIR="$(pwd)/.venv"
 DATA_DIR="data/SiegelOhneRisse"
@@ -26,6 +27,9 @@ process_single() {
     local output_file="$OUT_DIR/shape-$base_file.png"
     local pp_output_file="$OUT_DIR/processed-shape-$base_file.png"
     local shape_file="$OUT_DIR/map-$base_file.stl"
+
+    echo "Processing \"$1\""
+
     python3 "$EXTRACTION_DIR/sealExtraction/main.py" \
         -o "$extracted_file" \
         "$1"
