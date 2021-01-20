@@ -3,23 +3,28 @@
 set -euo pipefail
 set -x
 
-VENV_DIR="$(pwd)/.venv"
-DATA_DIR="data/SiegelOhneRisse"
-OUT_DIR="data/out"
+export VENV_DIR="$(pwd)/.venv"
+export DATA_DIR="data/images"
+export OUT_DIR="data/out"
 
-EXTRACTION_DIR="sealExtraction"
-SFS_DIR="ShapeFromShading"
-DMSTL_DIR="displacementMapToStl"
+export EXTRACTION_DIR="sealExtraction"
+export SFS_DIR="ShapeFromShading"
+export DMSTL_DIR="displacementMapToStl"
 
 setup() {
     python3 -m venv "$VENV_DIR"
     source "${VENV_DIR}/bin/activate"
+    pip install --upgrade pip
     pip install wheel
     pip install -r "$EXTRACTION_DIR/requirements.txt"
+    pip install ./sealExtraction
     pip install -r "$SFS_DIR/requirements.txt"
+    pip install ./ShapeFromShading
 }
 
 process_single() {
+    set -euo pipefail
+
     #local extracted_file="$(mktemp extracted_seal_XXXXXX.jpg)"
     local base_file
     base_file="$(basename --suffix=.jpg "$1")"
@@ -30,10 +35,10 @@ process_single() {
 
     echo "Processing \"$1\""
 
-    python3 "$EXTRACTION_DIR/sealExtraction/main.py" \
+    sealExtraction \
         -o "$extracted_file" \
         "$1"
-    python3 "$SFS_DIR/shapefromshading/main.py" \
+    sealconvert3d \
         -o "$output_file" \
         "$extracted_file"
     magick \
