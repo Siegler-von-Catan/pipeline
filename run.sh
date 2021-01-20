@@ -93,9 +93,13 @@ else
     mkdir -p "$OUT_DIR"
 fi
 
+export -f process_single
 
 find "$DATA_DIR" -type f -name '*.jpg' \
-    -print0 |
-    while IFS= read -r -d '' line; do
-        process_single "$line"
-    done
+    -print0 | \
+        parallel \
+            -j 4 \
+            -0 \
+            --eta \
+            --halt now,fail=1 \
+            process_single {}
