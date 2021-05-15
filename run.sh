@@ -46,6 +46,7 @@ process_single() {
         -equalize \
         -statistic NonPeak 10 \
         -blur 8 \
+        -rotate 270 -crop -10-10 -rotate 90 -fill white -draw "color 0,0 floodfill" \
         "$pp_output_file"
     blender \
         --background \
