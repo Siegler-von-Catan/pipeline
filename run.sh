@@ -25,7 +25,6 @@ setup() {
 process_single() {
     set -euo pipefail
 
-    #local extracted_file="$(mktemp extracted_seal_XXXXXX.jpg)"
     local base_file
     base_file="$(basename --suffix=.jpg "$1")"
     local extracted_file="$OUT_DIR/seal-$base_file.png"
@@ -46,8 +45,11 @@ process_single() {
         -equalize \
         -statistic NonPeak 10 \
         -blur 8 \
+        -negate \
+        -flop \
         -rotate 270 -crop -10-10 -rotate 90 -fill white -draw "color 0,0 floodfill" \
         "$pp_output_file"
+
     blender \
         --background \
         "$(pwd)/$DMSTL_DIR/src/empty.blend" \
