@@ -1,0 +1,8 @@
+*.joblog
+*.png
+.venv/*
+data/*
+.git/*
+*/.git/*
+docker/*
+displacementMapToStl/results/*
