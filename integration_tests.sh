@@ -5,7 +5,7 @@ set -euo pipefail
 mkdir -p data
 cp test_images/ data/ -r
 
-./docker_run.sh
+./docker-run.sh
 
 echo "Finished running ./docker_run.sh"
 
