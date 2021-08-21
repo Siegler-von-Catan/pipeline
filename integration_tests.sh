@@ -10,7 +10,7 @@ cp test_images/ data/images -r
 
 echo "Finished running ./docker_run.sh"
 
-base_file=uni_big_greyscale.png
+base_file=uni_big_greyscale
 
 FILE=data/out/seal-$base_file.png
 if [ ! -f "$FILE" ]; then
