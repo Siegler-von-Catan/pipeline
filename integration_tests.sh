@@ -3,7 +3,8 @@
 set -euo pipefail
 
 mkdir -p data
-cp test_images/ data/ -r
+mkdir -p data/images
+cp test_images/ data/images -r
 
 ./docker-run.sh
 
