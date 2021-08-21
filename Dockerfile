@@ -7,9 +7,10 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
 		pip git parallel \
         python3-opencv python3-venv \
-		imagemagick \
-		blender && \
+		imagemagick wget ffmpeg libsm6 libxext6  -y&& \
     rm -rf /var/lib/apt/lists/*
+
+RUN wget https://ftp.halifax.rwth-aachen.de/blender/release/Blender2.93/blender-2.93.3-linux-x64.tar.xz && tar -xf blender-2.93.3-linux-x64.tar.xz && chmod 777 blender-2.93.3-linux-x64/blender && ln -s /fabseal/blender-2.93.3-linux-x64/blender  /usr/local/bin/blender
 
 ENV VENV=/opt/venv
 RUN python3 -m venv $VENV
