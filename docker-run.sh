@@ -8,6 +8,5 @@ docker build \
 
 docker run \
 	--mount type=bind,source="$(pwd)"/data,target=/fabseal/data \
-	-it \
 	fabseal
 
