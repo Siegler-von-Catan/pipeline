@@ -6,6 +6,9 @@ to be able to automatically execute all steps in the pipeline, including
 - shape from shading
 - post-processing, like generating the 3d stl file using blender
 
+I tried to keep track of some of the datasets origins and how we processed them in
+`dataset_information.md`.
+
 # Usage
 We bundled the dependencies in a Dockerfile, to make it as easy as possible to use.
 
