@@ -64,5 +64,20 @@ It unfortunatley does not have lido data, but only a csv file, so additional pre
 Copyright is CC BY-SA 4.0, so should be fine.
 
 # Siegelmarken of the veikosarchive (schools)
+I just copied the html from wikimedia out of the browser and used this ripgrep command to filter out the files:
 
+```rg '(?<=href.)".*?"' html_copy.html -Po --no-line-number > images_links.txt```
 
+Getting the real image file link works something like this in python
+
+```
+for l in lines:
+  r = requests.get("https://commons.wikimedia.org" + l.replace("\n","").replace('"',''))
+  soup = BeautifulSoup(r.content, 'html.parser')
+  image_link = soup.find('div', attrs={'class':'fullMedia'}).find('a').get('href')
+  print(image_link)
+```
+By this, we can create a list which contains the real image link, whic can then be downloaded using, for example,
+```
+wget -i {link_file}
+```
