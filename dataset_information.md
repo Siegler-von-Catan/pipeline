@@ -81,3 +81,6 @@ By this, we can create a list which contains the real image link, whic can then 
 ```
 wget -i {link_file}
 ```
+Some of the image files had problematic names, as they contained '-' or '.' characters, which I removed by a bulk rename in ranger (but use just whatever you prefer).
+
+
