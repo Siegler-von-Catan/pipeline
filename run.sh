@@ -19,7 +19,12 @@ process_single() {
     local pp_output_file="$OUT_DIR/processed-shape-$base_file.png"
     local shape_file="$OUT_DIR/map-$base_file.stl"
 
-    echo "Processing \"$1\""
+    if [ -f "$extracted_file" -a -f "$output_file" -a -f "$pp_output_file" -a -f "$shape_file" ]; then
+        echo "Skipping \"$1\""
+        return
+    else
+        echo "Processing \"$1\""
+    fi
 
     sealExtraction \
         -o "$extracted_file" \
