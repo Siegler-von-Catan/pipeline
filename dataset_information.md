@@ -6,7 +6,8 @@ and also are able to reproduce the datasets if necessary.
 
 # Siegelsammlung Arnold Gruhn
 
-(Well this is what we have been doing the whole time)
+The lido files can be downloaded over the CodingDavinci-Website.
+Using retrieve-data, the image files can then be downloaded, and the items.json can be generated using the lido2JSON script.
 
 # Great Britain Pennies (pennies_gbr)
 
