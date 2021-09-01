@@ -51,7 +51,7 @@ for dataset_name in datasets.keys():
 
     minified_items = []
 
-    for index, item in enumerate(items, start=0):
+    for index, item in enumerate(items, start=1):
         if index > max_elements:
             continue
 
@@ -61,9 +61,9 @@ for dataset_name in datasets.keys():
         path_stl = os.path.join(dataset_folder, "stl", str(index) + ".stl")
         path_original = os.path.join(dataset_folder, "original", str(index) + ".png")
 
-        new_path_heightmap = os.path.join(minified_dataset_folder, "heightmap", str(index) + ".png")
-        new_path_stl = os.path.join(minified_dataset_folder, "stl", str(index) + ".stl")
-        new_path_original = os.path.join(minified_dataset_folder, "original", str(index) + ".png")
+        new_path_heightmap = os.path.join(minified_dataset_folder, "heightmap", str(index - 1) + ".png")
+        new_path_stl = os.path.join(minified_dataset_folder, "stl", str(index - 1) + ".stl")
+        new_path_original = os.path.join(minified_dataset_folder, "original", str(index - 1) + ".png")
 
         shutil.copyfile(path_heightmap, new_path_heightmap)
         shutil.copyfile(path_stl, new_path_stl)
